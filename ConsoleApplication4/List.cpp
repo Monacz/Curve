@@ -105,9 +105,9 @@ void List::print()
 
 bool List::operator<(const List& curve)
 {
-	if(this->curveslongation() < curve.curveslongation())
-		return true;
-	return false;
+	return this->curveslongation() < curve.curveslongation();
+
+
 }
 
 void List::delAll()
