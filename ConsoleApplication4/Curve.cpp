@@ -19,6 +19,7 @@ Curve::~Curve()
 
 Curve::Curve(const Curve& listToCopy):Curve()
 {
+	//copy
 	Elem* temp = listToCopy.head;
 	while (temp != nullptr)
 	{
@@ -29,13 +30,14 @@ Curve::Curve(const Curve& listToCopy):Curve()
 
 Curve& Curve::operator=(const Curve&& listToMove) noexcept
 {
+	//Check if the same
 	if (this == &listToMove)
 		return *this;
 
 	this->~Curve();
 
+	//Moving
 	Elem* temp = listToMove.head;
-
 	while (temp != nullptr)
 	{
 		addTail(temp->data);
@@ -47,11 +49,13 @@ Curve& Curve::operator=(const Curve&& listToMove) noexcept
 
 Curve& Curve::operator=(const Curve& listToCopy)
 {
+	//Check if the same
 	if (this == &listToCopy)
 		return *this;
 
 	this->~Curve(); 
 
+	//copy
 	Elem* temp = listToCopy.head;
 	while (temp != nullptr)
 	{
@@ -62,11 +66,9 @@ Curve& Curve::operator=(const Curve& listToCopy)
 	return *this;
 }
 
-Curve::Curve(const Curve&& listToMove) noexcept
+Curve::Curve(const Curve&& listToMove) noexcept: Curve()
 {
-	head = tail = nullptr;
-	count = 0;
-
+	//Moving
 	Elem* temp = listToMove.head;
 	while (temp != nullptr)
 	{
@@ -182,7 +184,6 @@ Elem* Curve::getElem(int pos)
 
 	if (pos < 0 && pos > count - 1)
 	{
-		std::cout << "Incorrect position !!!\n";
 		return nullptr;
 	}
 
