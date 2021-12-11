@@ -1,15 +1,11 @@
 #include "List.h"
 
-List::List()
+List::List():head(nullptr), tail(nullptr), count(0)
 {
-	head = tail = nullptr;
-	count = 0;
 }
 
-List::List(std::initializer_list<Point>&& listOfPoints)
+List::List(std::initializer_list<Point>&& listOfPoints):List()
 {
-	head = tail = nullptr;
-	count = 0;
 	for (const auto i : listOfPoints)
 	{
 		addTail(i);
@@ -19,6 +15,64 @@ List::List(std::initializer_list<Point>&& listOfPoints)
 List::~List()
 {
 	delAll();
+}
+
+List::List(const List& listToCopy):List()
+{
+	Elem* temp = listToCopy.head;
+	while (temp != nullptr)
+	{
+		addTail(temp->data);
+		temp = temp->next;
+	}
+}
+
+List& List::operator=(const List&& listToMove) noexcept
+{
+	if (this == &listToMove)
+		return *this;
+
+	this->~List();
+
+	Elem* temp = listToMove.head;
+
+	while (temp != nullptr)
+	{
+		addTail(temp->data);
+		temp = temp->next;
+	}
+
+	return *this;
+}
+
+List& List::operator=(const List& listToCopy)
+{
+	if (this == &listToCopy)
+		return *this;
+
+	this->~List(); 
+
+	Elem* temp = listToCopy.head;
+	while (temp != nullptr)
+	{
+		addTail(temp->data);
+		temp = temp->next;
+	}
+
+	return *this;
+}
+
+List::List(const List&& listToMove) noexcept
+{
+	head = tail = nullptr;
+	count = 0;
+
+	Elem* temp = listToMove.head;
+	while (temp != nullptr)
+	{
+		addTail(temp->data);
+		temp = temp->next;
+	}
 }
 
 
@@ -48,12 +102,12 @@ void List::addTail(Point n)
 void List::del(Elem* element)
 {
 	size_t i = 0;
-	Elem* Del = head;
+	Elem* del = head;
 
-	while (Del != element)
+	while (del != element)
 	{
 
-		Del = Del->next;
+		del = del->next;
 		++i;
 		if (i - 1 == count)
 		{
@@ -61,26 +115,26 @@ void List::del(Elem* element)
 		}
 	}
 
-	Elem* PrevDel = Del->prev;
-	Elem* AfterDel = Del->next;
+	Elem* prevDel = del->prev;
+	Elem* afterDel = del->next;
 
-	if (PrevDel != nullptr && count != 1)
+	if (prevDel != nullptr && count != 1)
 	{
-		PrevDel->next = AfterDel;
+		prevDel->next = afterDel;
 	}
-	if (AfterDel != nullptr && count != 1)
+	if (afterDel != nullptr && count != 1)
 	{
-		AfterDel->prev = PrevDel;
+		afterDel->prev = prevDel;
 	}
 	if (i == 0)
 	{
-		head = AfterDel;
+		head = afterDel;
 	}
 	if (i == count - 1)
 	{
-		tail = PrevDel;
+		tail = prevDel;
 	}
-	delete Del;
+	delete del;
 
 	--count;
 }
@@ -161,6 +215,7 @@ double List::curveslongation() const
 	while (current != tail->prev)
 	{
 		longation += distanceBetweenPoints(current, current->next);
+		current = current->next;
 	}
 	return longation;
 }

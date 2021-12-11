@@ -23,6 +23,10 @@ public:
 	List();
 	explicit List(std::initializer_list<Point>&& listOfPoints);
 	~List();
+	List& operator=(const List& listToCopy);
+	List(const List&& listToMove) noexcept;
+	
+
 
 	int getCount();
 	Elem* getElem(int);
@@ -32,10 +36,12 @@ public:
 	double curveslongation() const;
 	void print();
 
+	List(const List& listToCopy);
+	List& operator=(const List&& listToMove) noexcept;
 	bool operator<(const List& curve);
-	Elem* head;
+
 private:
-	//Elem* head;
+	Elem* head;
 	Elem* tail;
 	std::size_t count;
 
