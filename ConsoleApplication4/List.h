@@ -33,9 +33,9 @@ public:
 	void print();
 
 	bool operator<(const List& curve);
-
-private:
 	Elem* head;
+private:
+	//Elem* head;
 	Elem* tail;
 	std::size_t count;
 

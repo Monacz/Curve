@@ -28,20 +28,33 @@ List& pointsDeleter(List& curve)
 
 int main()
 {
-	List* curve = new List{ {-93, -81}, {-40, 82}, {31, -57}, {-29, -33}, {-9, 45}, {-7, -19}, {37, -45} };
-	
+	List curve1{ {-93, -81}, {-40, 82}, {31, -57}, {-29, -33}, {-9, 45}, {-7, -19}, {37, -45} };
+	List curve2{ {-51, -5}, {-30, 41}, {27, 21} };
+	List curve3{ {-83, 22}, {-77, -32}, {-11, -49}, {27, -12}, {85, -32} };
+
 	std::vector<List> curves;
-	/*curves.push_back(List({ {-83, 22}, {-77, -32}, {-11, -49}, {27, -12}, {85, -32} }));*/
 
-	std::cout << "List L:\n";
-	curve->print();
-
-	pointsDeleter(*curve);
-
-	std::cout << "NEW List L:\n";
-	curve->print();
-
-	delete curve;
-
+	std::cout << "Curves:\n";
+	curve1.print();
 	std::cout << std::endl;
+	curve2.print();
+	std::cout << std::endl;
+	curve3.print();
+	std::cout << std::endl;
+
+	//pointsDeleter(curve1);
+	//pointsDeleter(curve2);
+	//pointsDeleter(curve3);
+
+
+	std::cout << "NEW Curves:\n";
+	curve1.print();
+	std::cout << std::endl;
+	curve2.print();
+	std::cout << std::endl;
+	curve3.print();
+	std::cout << std::endl;
+
+	curves.push_back(curve2);
+	std::cout << curves[0].head->data.X << " " << curves[0].head->data.Y;
 }

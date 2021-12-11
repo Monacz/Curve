@@ -24,7 +24,6 @@ List::~List()
 
 void List::addTail(Point n)
 {
-
 	Elem* temp = new Elem;
 
 	temp->next = nullptr;
