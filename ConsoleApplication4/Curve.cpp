@@ -1,10 +1,10 @@
-#include "List.h"
+#include "Curve.h"
 
-List::List():head(nullptr), tail(nullptr), count(0)
+Curve::Curve():head(nullptr), tail(nullptr), count(0)
 {
 }
 
-List::List(std::initializer_list<Point>&& listOfPoints):List()
+Curve::Curve(std::initializer_list<Point>&& listOfPoints):Curve()
 {
 	for (const auto i : listOfPoints)
 	{
@@ -12,12 +12,12 @@ List::List(std::initializer_list<Point>&& listOfPoints):List()
 	}
 }
 
-List::~List()
+Curve::~Curve()
 {
 	delAll();
 }
 
-List::List(const List& listToCopy):List()
+Curve::Curve(const Curve& listToCopy):Curve()
 {
 	Elem* temp = listToCopy.head;
 	while (temp != nullptr)
@@ -27,12 +27,12 @@ List::List(const List& listToCopy):List()
 	}
 }
 
-List& List::operator=(const List&& listToMove) noexcept
+Curve& Curve::operator=(const Curve&& listToMove) noexcept
 {
 	if (this == &listToMove)
 		return *this;
 
-	this->~List();
+	this->~Curve();
 
 	Elem* temp = listToMove.head;
 
@@ -45,12 +45,12 @@ List& List::operator=(const List&& listToMove) noexcept
 	return *this;
 }
 
-List& List::operator=(const List& listToCopy)
+Curve& Curve::operator=(const Curve& listToCopy)
 {
 	if (this == &listToCopy)
 		return *this;
 
-	this->~List(); 
+	this->~Curve(); 
 
 	Elem* temp = listToCopy.head;
 	while (temp != nullptr)
@@ -62,7 +62,7 @@ List& List::operator=(const List& listToCopy)
 	return *this;
 }
 
-List::List(const List&& listToMove) noexcept
+Curve::Curve(const Curve&& listToMove) noexcept
 {
 	head = tail = nullptr;
 	count = 0;
@@ -76,7 +76,7 @@ List::List(const List&& listToMove) noexcept
 }
 
 
-void List::addTail(Point n)
+void Curve::addTail(Point n)
 {
 	Elem* temp = new Elem;
 
@@ -99,7 +99,7 @@ void List::addTail(Point n)
 	++count;
 }
 
-void List::del(Elem* element)
+void Curve::del(Elem* element)
 {
 	size_t i = 0;
 	Elem* del = head;
@@ -139,7 +139,7 @@ void List::del(Elem* element)
 	--count;
 }
 
-void List::print()
+void Curve::print()
 {
 
 	if (count != 0)
@@ -156,14 +156,14 @@ void List::print()
 	}
 }
 
-bool List::operator<(const List& curve)
+bool Curve::operator<(const Curve& curve)
 {
-	return this->curveslongation() < curve.curveslongation();
+	return this->curveslength() < curve.curveslength();
 
 
 }
 
-void List::delAll()
+void Curve::delAll()
 {
 	while (count != 0)
 	{
@@ -171,12 +171,12 @@ void List::delAll()
 	}
 }
 
-int List::getCount()
+int Curve::getCount()
 {
 	return count;
 }
 
-Elem* List::getElem(int pos)
+Elem* Curve::getElem(int pos)
 {
 	Elem* temp = head;
 
@@ -203,12 +203,12 @@ Elem* List::getElem(int pos)
 	}
 }
 
-double List::distanceBetweenPoints(Elem* a, Elem* b) const
+double Curve::distanceBetweenPoints(Elem* a, Elem* b) const
 {
 	return sqrt((b->data.X - a->data.X) * (b->data.X - a->data.X) + (b->data.Y - a->data.Y) * (b->data.Y - a->data.Y));
 }
 
-double List::curveslongation() const
+double Curve::curveslength() const
 {
 	double longation = 0;
 	Elem* current = head;

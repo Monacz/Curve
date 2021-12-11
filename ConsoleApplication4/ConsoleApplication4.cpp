@@ -2,18 +2,18 @@
 #include <vector>
 #include <algorithm>
 
-#include "List.h"
+#include "Curve.h"
 
 
-List& pointsDeleter(List& curve);
+Curve& pointsDeleter(Curve& curve);
 
 int main()
 {
-	std::vector<List> curves;
+	std::vector<Curve> curves;
 
-	curves.emplace_back(List{ {-93, -81}, {-40, 82}, {31, -57}, {-29, -33}, {-9, 45}, {-7, -19}, {37, -45} });
-	curves.emplace_back(List{{ -51, -5 }, { -30, 41 }, { 27, 21 }});
-	curves.emplace_back(List{ {-83, 22}, {-77, -32}, {-11, -49}, {27, -12}, {85, -32} });
+	curves.emplace_back(Curve{ {-93, -81}, {-40, 82}, {31, -57}, {-29, -33}, {-9, 45}, {-7, -19}, {37, -45} });
+	curves.emplace_back(Curve{{ -51, -5 }, { -30, 41 }, { 27, 21 }});
+	curves.emplace_back(Curve{ {-83, 22}, {-77, -32}, {-11, -49}, {27, -12}, {85, -32} });
 
 	std::cout << "Curves:\n";
 	curves[0].print();
@@ -47,7 +47,7 @@ int main()
 	std::cout << std::endl;
 }
 
-List& pointsDeleter(List& curve)
+Curve& pointsDeleter(Curve& curve)
 {
 	std::vector<Elem*> positions;
 

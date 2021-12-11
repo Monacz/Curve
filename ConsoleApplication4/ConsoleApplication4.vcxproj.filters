@@ -18,12 +18,12 @@
     <ClCompile Include="ConsoleApplication4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="List.cpp">
+    <ClCompile Include="Curve.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="List.h">
+    <ClInclude Include="Curve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
