@@ -53,9 +53,9 @@ Curve& pointsDeleter(Curve& curve)
 
 	for (size_t i = 1; i <= curve.getCount() - 2; ++i)
 	{
-		if (curve.distanceBetweenPoints(curve.getElem(i), curve.getElem(i + 1)) +
-			curve.distanceBetweenPoints(curve.getElem(i), curve.getElem(i - 1)) <=
-			curve.distanceBetweenPoints(curve.getElem(i - 1), curve.getElem(i + 1)) * 1.2)
+		if (curve.distanceBetweenPoints(*curve.getElem(i), *curve.getElem(i + 1)) +
+			curve.distanceBetweenPoints(*curve.getElem(i), *curve.getElem(i - 1)) <=
+			curve.distanceBetweenPoints(*curve.getElem(i - 1), *curve.getElem(i + 1)) * 1.2)
 		{
 			positions.emplace_back(curve.getElem(i));
 		}

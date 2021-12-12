@@ -204,9 +204,9 @@ Elem* Curve::getElem(int pos)
 	}
 }
 
-double Curve::distanceBetweenPoints(Elem* a, Elem* b) const
+double Curve::distanceBetweenPoints(Elem& a, Elem& b) const
 {
-	return sqrt((b->data.X - a->data.X) * (b->data.X - a->data.X) + (b->data.Y - a->data.Y) * (b->data.Y - a->data.Y));
+	return sqrt((b.data.X - a.data.X) * (b.data.X - a.data.X) + (b.data.Y - a.data.Y) * (b.data.Y - a.data.Y));
 }
 
 double Curve::curveslength() const
@@ -215,7 +215,7 @@ double Curve::curveslength() const
 	Elem* current = head;
 	while (current != tail->prev)
 	{
-		longation += distanceBetweenPoints(current, current->next);
+		longation += distanceBetweenPoints(*current, *(current->next));
 		current = current->next;
 	}
 	return longation;

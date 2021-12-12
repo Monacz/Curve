@@ -36,7 +36,7 @@ public:
 	//add element to the end
 	void addTail(Point n);
 	//distance between points
-	double distanceBetweenPoints(Elem* a, Elem* b) const;
+	double distanceBetweenPoints(Elem& a, Elem& b) const;
 	//Lenght of curve
 	double curveslength() const;
 	//print nodes
