@@ -24,7 +24,7 @@ public:
 	explicit Curve(std::initializer_list<Point>&& listOfPoints);
 	~Curve();
 	Curve(const Curve& listToCopy);
-	Curve(const Curve&& listToMove) noexcept;
+	Curve(Curve&& listToMove) noexcept;
 	
 
 	//Count of nodes
@@ -45,7 +45,7 @@ public:
 	//copy assignment 
 	Curve& operator=(const Curve& listToCopy);
 	//move assignment
-	Curve& operator=(const Curve&& listToMove) noexcept;
+	Curve& operator=(Curve&& listToMove) noexcept;
 	//< operator to use in sorting algorithm
 	bool operator<(const Curve& curve);
 

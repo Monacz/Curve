@@ -28,7 +28,7 @@ Curve::Curve(const Curve& listToCopy):Curve()
 	}
 }
 
-Curve& Curve::operator=(const Curve&& listToMove) noexcept
+Curve& Curve::operator=(Curve&& listToMove) noexcept
 {
 	//Check if the same
 	if (this == &listToMove)
@@ -37,12 +37,13 @@ Curve& Curve::operator=(const Curve&& listToMove) noexcept
 	this->~Curve();
 
 	//Moving
-	Elem* temp = listToMove.head;
-	while (temp != nullptr)
-	{
-		addTail(temp->data);
-		temp = temp->next;
-	}
+	count = listToMove.count;
+	head = listToMove.head;
+	tail = listToMove.tail;
+
+	listToMove.count = 0;
+	listToMove.head = nullptr;
+	listToMove.tail = nullptr;
 
 	return *this;
 }
@@ -66,15 +67,11 @@ Curve& Curve::operator=(const Curve& listToCopy)
 	return *this;
 }
 
-Curve::Curve(const Curve&& listToMove) noexcept: Curve()
+Curve::Curve(Curve&& listToMove) noexcept: count(listToMove.count), head(listToMove.head), tail(listToMove.tail)
 {
-	//Moving
-	Elem* temp = listToMove.head;
-	while (temp != nullptr)
-	{
-		addTail(temp->data);
-		temp = temp->next;
-	}
+		listToMove.count = 0;
+		listToMove.head = nullptr;
+		listToMove.tail = nullptr;
 }
 
 
